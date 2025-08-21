@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>{{ title }}</h2>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% elif recommendations %}
+      <div class="movie-list">
+        {% for movie in recommendations %}
+          <div class="movie-item">
+            {% if movie.poster_path %}
+              <img class="poster" src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="{{ movie.title }}">
+            {% else %}
+              <div class="poster placeholder">No Image</div>
+            {% endif %}
+            <div class="movie-details">
+              <h3>{{ movie.title }}</h3>
+              <p class="release-date">{{ movie.release_date or "Unknown Year" }}</p>
+              <p class="overview">{{ movie.overview[:180] }}...</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No recommendations available.</p>
+    {% endif %}
+
+    <a class="back-link" href="/">← Try another mood</a>
+  </div>
+</body>
+</html>

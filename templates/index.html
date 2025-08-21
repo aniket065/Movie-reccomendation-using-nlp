@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood-Based Movie Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Mood-Based Movie Recommender</h1>
+    <p class="subtitle">Describe how you feel and we'll recommend movies that match your mood!</p>
+
+    <form action="/recommend" method="POST">
+      <label for="mood_text">What's your mood today?</label>
+      <input type="text" name="mood_text" id="mood_text" placeholder="e.g., I'm feeling sad and want something emotional" required>
+      <button type="submit">🎥 Recommend Movies</button>
+    </form>
+  </div>
+</body>
+</html>
